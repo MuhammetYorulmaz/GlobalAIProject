@@ -58,15 +58,18 @@ class OgrenciNotGirme():
         ogrNotHarfList=[]
         ogrDurumList=[]
         
-        #Yeni gelen verileri Excel Dosyasının altına ekleyebilmek için Exceldeki verileri listelere ekleyelim. Excel Dosyasını Veri Tabanı gibi kullanalım..
-        dersList.extend(data["Ders"].values)
-        ogrAdList.extend(data["Öğrencinin Adı"].values)
-        ogrSoyadList.extend(data["Öğrencinin Soyadı"].values)
-        ogrNumList.extend(data["Öğrencinin Numarası"].values)
-        ogrNotList.extend(data["Öğrencinin Notu"].values)
-        ogrNotHarfList.extend(data["Not Harf Bilgisi"].values)
-        ogrDurumList.extend(data["Öğrencinin Durumu"].values)
-
+        try:
+            #Yeni gelen verileri Excel Dosyasının altına ekleyebilmek için Exceldeki verileri listelere ekleyelim. Excel Dosyasını Veri Tabanı gibi kullanalım..
+            dersList.extend(data["Ders"].values)
+            ogrAdList.extend(data["Öğrencinin Adı"].values)
+            ogrSoyadList.extend(data["Öğrencinin Soyadı"].values)
+            ogrNumList.extend(data["Öğrencinin Numarası"].values)
+            ogrNotList.extend(data["Öğrencinin Notu"].values)
+            ogrNotHarfList.extend(data["Not Harf Bilgisi"].values)
+            ogrDurumList.extend(data["Öğrencinin Durumu"].values)
+        except NameError:
+            pass
+            
         def dersSecim():
             try:
                 ders = input("Ders Bilgisini Giriniz:(Programlama,Veri Yapıları gibi.) :")
