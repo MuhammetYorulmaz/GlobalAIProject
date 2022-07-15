@@ -29,7 +29,7 @@ class OgrenciNotGirme():
         if secim ==1: 
             self.notGoruntuleme()
         if secim==2:
-            self.yeniKayıt()
+            self.yeniKayit()
         if secim == 3:
             self.programiKapat()
             
@@ -49,7 +49,7 @@ class OgrenciNotGirme():
         except:
             print("Daha önce herhangi bir kayıt oluşturulmamış görünmekte. Yeni kayıt oluşturup Progamı kapatıp-açtıktan sonra ilgili veriler görüntülenebilecektir.")
         
-    def yeniKayıt(self):
+    def yeniKayit(self):
         dersList=[]
         ogrAdList=[]
         ogrSoyadList=[]
@@ -81,49 +81,48 @@ class OgrenciNotGirme():
         def kayitSystem():
 
             def ogrenciNot():
-                try: 
+                global ogrNot
+                try:
                     ogrNot = float(input("Öğrencinin Aldığı Notu Giriniz [0-100 arasında olmalıdır]:"))
                     if round(ogrNot) not in range(0,101):
                         print("Girilen Notlar 0 ile 100 arasında olmalıdır.")
                         ogrenciNot()
-                    return ogrNot
                 except ValueError:
                     print("Not alanında olduğunuzdan sayısal bir değer girmeniz gerekmektedir.\nÖrneğin:'80' veya '80.5' gibi.")
                     ogrenciNot()
             def ogrenciAd():
+                global ogrAd
                 try: 
                     ogrAd = input("Öğrencinin Adını Giriniz:")
                     if ogrAd.strip() == "":
                         print("Öğrencinin adı boş bırakılmamalıdır.")
                         ogrenciAd()
-                    return ogrAd
                 except ValueError:
                     print("Ad Giriniz:\nÖrnek:'Muhammet'")
                     ogrenciAd()
             def ogrenciSoyad():
+                global ogrSoyad
                 try: 
                     ogrSoyad = input("Öğrencinin Soyadını Giriniz:")
                     if ogrSoyad.strip() == "":
                         print("Soyad alanı boş bırakılmamalıdır.")
                         ogrenciSoyad()
-                    return ogrSoyad
                 except ValueError:
                     print("Soyad Giriniz:\nÖrnek:'Yorulmaz'")
                     ogrenciSoyad()
             def ogrenciNumara():
+                global ogrNum
                 try: 
                     ogrNum = int(input("Öğrencinin Numarasını Giriniz:"))
-                    return ogrNum
-                except ValueError:
+                except:
                     print("Öğrenci numara alanında olduğunuzdan sayısal tam bir değer girmeniz gerekmektedir.\nÖrneğin:'217605021'")
                     ogrenciNumara()
                 
             #Call Func.       
-            ogrAd = ogrenciAd()
-            ogrSoyad = ogrenciSoyad()
-            ogrNum = ogrenciNumara()
-            ogrNot = ogrenciNot()
-
+            ogrenciAd()
+            ogrenciSoyad()
+            ogrenciNumara()
+            ogrenciNot()
             #Add List
             ogrAdList.append(ogrAd.strip().title())
             ogrSoyadList.append(ogrSoyad.strip().upper())
@@ -170,7 +169,7 @@ class OgrenciNotGirme():
                 print(str(datetime.datetime.now().strftime("%x %X")),' Öğrenci Not Listesi için hazırlanan Excel Dosyası başarılı bir şekilde işlenmiştir.')
             except Exception as E:
                 print("Excel Dosyası açık kalmış olmalı. Dsoyayı kapattıktan bir süre bekler misiniz? ",E)
-                time.sleep(120)
+                time.sleep(60)
                 dfToExcel(dfOgrenciBilgi)
         dfToExcel(dfOgrenciBilgi)
         
